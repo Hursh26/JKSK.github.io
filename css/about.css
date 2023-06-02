@@ -1,0 +1,187 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica;
+}
+
+body{
+    width:-webkit-fill-available;
+}
+
+/*Spinner Start*/
+#spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%);
+    left:50%;
+    top:50%;
+    position: fixed;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease-out, visibility 0s linear .5s;
+    z-index: 99999;
+}
+
+#spinner.show {
+    transition: opacity .5s ease-out, visibility 0s linear 0s;
+    visibility: visible;
+    opacity: 1;
+}
+.spinner-border{
+    color: blue;
+    width: 3rem; 
+    height: 3rem;
+    display: inline-block;
+    vertical-align: -0.125em;
+    border:0.25em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: .75s linear infinite spinner-border;
+}
+.spin-circle{
+    border: 0;
+    clip: rect(0,0,0,0);
+    height: 1px;
+    margin: -1px;
+    position: absolute;
+    width:1px;
+    
+}
+
+@keyframes spinner-border {
+    to{transform:rotate(360deg)}
+}
+
+
+/* Nav bar Start*/
+.nav-bar{
+    position:fixed;
+    background-color: #ffffff;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+    height: max-content;
+    width: -webkit-fill-available;
+    transition: 0.5s;
+    z-index: 10;
+}
+
+.nav-bar .nav-content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Montserrat",sans-serif;
+    margin-left: 9%;
+    margin-right: 9%;
+}
+.nav-bar .nav-content .company-name{
+    position:relative;
+    font-size: 20px;
+}
+.nav-bar .nav-content .company-name a{
+    display: flex;
+    color: #005491;
+    text-decoration: underline;
+    
+    padding: 0;
+}
+.nav-bar .nav-content .company-name .CA-logo{
+    /* border-radius: 25px; 
+    box-shadow: inset 0px 0px 6px 0px rgb(55, 55, 164);  */
+    border-radius: 15px;
+    height: 70px;
+    width: 80px; 
+    background:url(../images/logo.jpg) no-repeat center;
+    background-size: 119%;
+}
+.nav-bar .nav-content .nav-links{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav-bar .nav-content .nav-links a,.nav-bar .nav-content a{
+    text-decoration: none;
+    margin: 12px 35px 12px 0px;
+    padding: 13px 25px 13px 25px;
+    font-size: 18px;
+    font-weight: 500;
+    outline: none;
+    color: black;
+    height: 100%;
+}
+.nav-bar .nav-content .nav-links a,.nav-bar .nav-content span{
+    text-decoration: none;
+    margin: 0px 35px 0px 0px;
+    padding: 25px 25px 25px 25px;
+    font-size: 18px;
+    font-weight: 500;
+    outline: none;
+    color: black;
+    height: 100%;
+    cursor: pointer;
+}
+.nav-bar .nav-content span .links-container{
+visibility: collapse;
+    position: absolute;
+    top: 11vh;
+    padding: 10px 0px 10px 0px;
+    left: 0;
+    width: -webkit-fill-available;
+    height: fit-content;
+    background-color: rgb(84 187 255 / 90%);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content:space-evenly ;
+}
+.nav-bar .nav-content span:hover .links-container{
+    visibility: visible;
+}
+.nav-bar .nav-content span .links-container:hover{
+    visibility: visible;
+}
+.nav-bar .nav-content span .links-container a{
+    color: floralwhite;
+    margin: 0;
+    padding: 0;
+}
+.nav-bar .nav-content span .links-container a:hover{
+    color: #0400ff;
+}
+/*Nav-bar End*/
+
+/* Body Start*/
+#about-container{
+    padding-top: 13vh;
+    z-index: 5;
+}
+.about-image{
+    background: url(../images/about-bg.jpg) no-repeat center;
+    background-size: 100%;
+    height: 40vh;
+    width: -webkit-fill-available;
+}
+.about-image .dark{
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.about-image .dark .about-heading{
+    width: fit-content;
+    height: fit-content;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 900;
+}
+.about-us{
+    margin: 5vh 12vw 0 12vw;
+}
+.about-us .about-firm{
+    font-size: 20px;
+}
+.about-us .about-firm .firm-head{
+    border-bottom: 5px double grey;
+    text-align: center;
+}

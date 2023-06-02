@@ -66,7 +66,8 @@ body{
     display: flex;
     align-items: center;
     /* background: linear-gradient(to right, #00008b, #ffffff, #fbff00); */
-    background-color: rgb(101, 255, 255);
+    /* background-color: rgb(101, 255, 255); */
+    background-color:rgb(255, 255, 255);
     width: -webkit-fill-available;
     padding: 7px;
 }
@@ -110,7 +111,7 @@ body{
 
 .nav-bar{
     position:sticky;
-    background-color: #ffffff;
+    background-color:rgb(0 43 255 / 75%);
     height: max-content;
     width: -webkit-fill-available;
     transition: 0.5s;
@@ -143,21 +144,48 @@ body{
     font-size: 18px;
     font-weight: 500;
     outline: none;
-    color: black;
+    color: rgb(0, 0, 0);
     height: 100%;
 }
 .nav-bar .nav-content .nav-links a,.nav-bar .nav-content span{
     text-decoration: none;
-    margin: 12px 35px 12px 0px;
-    padding: 13px 25px 13px 25px;
+    margin: 0px 35px 0px 0px;
+    padding: 25px 25px 25px 25px;
     font-size: 18px;
     font-weight: 500;
     outline: none;
-    color: black;
+    color: rgb(255, 255, 255);
     height: 100%;
     cursor: pointer;
 }
-
+.nav-bar .nav-content span .links-container{
+visibility: collapse;
+    position: absolute;
+    top: 9.5vh;
+    padding: 10px 0px 10px 0px;
+    left: 0;
+    width: -webkit-fill-available;
+    height: fit-content;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content:space-evenly ;
+}
+.nav-bar .nav-content span:hover .links-container{
+    visibility: visible;
+}
+.nav-bar .nav-content span .links-container:hover{
+    visibility: visible;
+}
+.nav-bar .nav-content span .links-container a{
+    color: rgb(95, 95, 95);
+    margin: 0;
+    padding: 0;
+}
+.nav-bar .nav-content span .links-container .links-card:hover a{
+    color: #0400ff;
+}
 /*Nav-bar End*/
 
 
@@ -214,8 +242,8 @@ body{
 #Teams{
     position: relative;
     z-index: 1;
-    padding-top: 145px;
-    margin-top: -145px;
+    padding-top: 100px;
+    margin-top: -80px;
 }
 #Teams .Teams-container{
     width: -webkit-fill-available;
@@ -236,7 +264,7 @@ body{
     height: 100%;
     width: 90%;
 }
-#Teams .Teams-container .card-container .Partners{
+#Teams .Teams-container .card-container .carousel .carousel-inner .carousel-item .Partners{
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -244,7 +272,7 @@ body{
     width: 80%;
     background-color: rgba(0, 0, 0, 0.75);
 }
-#Teams .Teams-container .card-container .Partners .card{
+#Teams .Teams-container .card-container .carousel .carousel-inner .carousel-item .Partners .card{
     box-shadow: 0 0 7px 0 rgba(0,0,0,0.5);
     transition: 0.3s;
     background-color: #ffffff;
@@ -257,22 +285,83 @@ body{
     height: 80%;
     width: 25%;
 }
-#Teams .Teams-container .card-container .Partners .card:hover{
+#Teams .Teams-container .card-container .carousel .carousel-inner .carousel-item .Partners .card:hover{
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
     opacity: 1;
     height: 83%;
     width: 26%;
 }
-#Teams .Teams-container .card-container .Partners .card a{
+#Teams .Teams-container .card-container .carousel .carousel-inner .carousel-item .Partners .card a{
     margin-top: 5px;
     height: min-content;
     padding: 10px 20px 10px 20px; 
     color: #ffffff;
     background-color: rgb(89, 112, 155); 
 }
-#Teams .Teams-container .card-container .Partners .card:hover a{
+#Teams .Teams-container .card-container .carousel .carousel-inner .carousel-item .Partners .card:hover a{
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
     background-color: rgb(110, 144, 207);
+}
+/* Crousel Strts*/
+.carousel-item{
+    position:relative;
+    display:none;
+    float:left;
+    width:100%;
+    height: 100%;
+    margin-right:-100%;
+    backface-visibility:hidden;
+    transition:transform .6s ease-in-out;
+    opacity:0;
+    transition-property:opacity;
+    transform:none;
+}
+.carousel-item.active{
+    display: block;
+}
+.carousel-fade .carousel-item.active,.carousel-fade .carousel-item-next.carousel-item-start,.carousel-fade .carousel-item-prev.carousel-item-end{
+    z-index:1;
+    opacity:1;
+    animation:fadeIn 0.5s;
+}
+.carousel-fade .active.carousel-item-start,.carousel-fade .active.carousel-item-end{
+    z-index:0;
+    opacity:0;
+    transition:opacity 0s .6s
+}
+@media (prefers-reduced-motion: reduce){
+    .carousel-fade .active.carousel-item-start,.carousel-fade .active.carousel-item-end{
+        transition:none
+    }
+}
+.prev-btn{
+    left: 10vw;
+}
+.next-btn{
+    right: 10vw;
+}
+.btn{
+    font-size: 30px;
+    position:absolute;
+    cursor: pointer;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height: fit-content;
+    width:fit-content;
+    padding:20px;
+    text-align:center;
+    background-color: #ffffff;
+    color: #00000e !important;
+    border:0;
+    opacity:0.5;
+    transition:opacity 0.15s ease;
+}
+.btn:hover{
+    transition: 0.2s;
+    font-size: 50px !important;
+    color: #0400ff !important;
 }
 /*Our Teams End*/
 
@@ -284,7 +373,7 @@ body{
     flex-direction: column;
     align-items: center;
     width: -webkit-fill-available;
-    height: 95vh;
+    height: fit-content;
     background: white;
 }
 #Services .services-Heading{
@@ -294,26 +383,30 @@ body{
 }
 #Services .services-container{
     width: -webkit-fill-available;
-    height: 90vh;
+    padding: 50px 0 50px 0;
+    height: fit-content;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: flex-start;
     margin: 1% 11% 2% 11%;
     box-shadow: inset 0 0 10px -3px rgba(0, 89, 255, 0.75);
     border-radius: 10px;
     background-color: rgba(0, 255, 255, 0.05 );
 }
 #Services .services-container .card{
+    padding-top: 50px;
+    padding-bottom: 20px;
+    word-wrap: break-word;
     width: 28.5%;
-    height: 45%;
+    height: fit-content;
     margin: 0%;
     border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 0 0 5px 0 rgba(0, 47, 255, 0.5);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 #Services .services-container .card h3{
@@ -412,8 +505,12 @@ body{
 .footer-content .content h1{
     color:white;
 }
-.footer-content .content .f-links{
-    display: flex;
+.footer-content .content a{
+    color: #ffffff98;
+    margin-bottom: 10px;
+}
+.footer-content .content a:hover{
+    color: rgb(0, 183, 255);
 }
 #Footer .rights{
     display: flex;
