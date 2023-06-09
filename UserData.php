@@ -1,34 +1,26 @@
 <?php
-$msg='';
-if($_SERVER["REQUEST_METHOD"]=="POST"){
-$msg='';
-$conn = mysqli_connect('localhost','id19316733_kd','Kuldeep-1234');
 
-mysqli_select_db($conn,'id19316733_userdata');
+if($_SERVER["REQUEST_METHOD"]=="POST"){ //if the information is sent through post method then only proceed
 
-$Name = $_POST['Nam'];
-$Uname = $_POST['Username'];
-$pass = $_POST['Password'];
-$DOB = $_POST['DOB'];
-$phone = $_POST['Mobile'];
-$Mail = $_POST['email'];
-$Address = $_POST['address'];
-$Gender = $_POST['gender'];
+    $conn = mysqli_connect('localhost','root'); //Connencting to mysql Database
 
-$qry="select * from Data where Uname='$Uname'";
-$check_duplicate=mysqli_query($conn,$qry);
+    mysqli_select_db($conn,'visitor_info'); //Selecting the Database to insert data in tables
 
-if(mysqli_num_rows($check_duplicate)==1){
-    $msg='<div style="color:red"><b> Username not available</div>';
+    //Creating variables for all the info received
+    $Name = $_POST['Nam'];
+    $phone = $_POST['Mobile'];
+    $Mail = $_POST['email'];
+    $company=$_POST['Company'];
+    $city=$_POST['City'];
+    $state=$_POST['State'];
+    $Comment = $_POST['comment'];
 
-}
-else{
-$query = "INSERT INTO Data( `Name`, `Uname`, `password`, `DOB`, `Mobile`, `Email`, `Address`, `Gender`) VALUES ('$Name','$Uname','$pass','$DOB','$phone','$Mail','$Address','$Gender')";
 
-mysqli_query($conn,$query);
+    //creating a variable that stores Query to insert data
+    $query = "INSERT INTO customer_data (`Name`, `Mobile`, `Email`, `Company`, `City`, `State`, `Comment`) VALUES ('$Name','$phone','$Mail','$company','$city','$state','$Comment')";
 
-header('location:Login.html');
-}
+    //Executing the mysql Query
+    mysqli_query($conn,$query);
 
 }
 ?>
@@ -36,55 +28,79 @@ header('location:Login.html');
 
 <!DOCTYPE html>
 <html>
-<head></head><title>SIGNUP </title>
+<head><title>SIGNUP </title>
     <link rel="stylesheet" href="form.css" type="text/css">
-    <script src="form.js"></script>
 </head>
-<body>
+<body style="margin:0">
 
     <!--Body starts here-->
-    <section id="body" >
-        <div class="form">
-    <form name="reg" action="" method="post">
-        <table border=5 rules="none" cellpadding=10 >
-            <tr>
-                <td colspan=2>
-                    <h1> Register</h1>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <lable>Enter your name:</lable></td> <td><input type="text" name="Nam" placeholder="First Name" required autofocus></td>
-            <tr>
-                <td>
-                    <lable>Enter Username:</lable></td> <td><input type="text" name="Username" placeholder="Username" required>
-                        <?php 
-                        echo $msg;
-                        ?>
-                        <td></tr>
-            <tr>
-                <td>
-                    <lable>Set Password:(atleast 6 characters)</lable></td> <td><input type="password" name="Password" placeholder="Enter Password" required><td></tr>
-            <tr>
-                <td>
-                    <lable>Select your Birthdate:</Select>:</lable></td> <td><input type="date" name="DOB" required><td></tr>
-            <tr>  
-                <td>
-                    <lable>Enter Mobile no:</lable></td> <td><input type="tel" name="Mobile" placeholder="Example: 5760749983 " required></td></tr>
-            <tr>
-                <td>
-                    <lable>Enter Email:</lable></td> <td><input type="email" name="email" placeholder="Example@gmail.com"></td></tr>
-            <tr >
-                <td valign="top">
-                    <lable>Enter Address:</lable></td> <td><textarea rows="4" cols="30" name="address" placeholder="Address" required></textarea></td></tr>
-                    <tr><td>
-                    <lable>Select Gender:</lable></td> <td><input type="radio" name="gender" value="male"> <lable>Male</lable> &nbsp <input type="radio" name="gender" value="female"> <lable>Female</lable> &nbsp <input type="radio" name="gender" value="Others"><lable>Others</lable></td></tr>
-    </table>
-    <br>
-    <Button type="submit" class="submit" onclick="regf();">Submit</Button>
-    <input type="button" value="cancel" class="reset" onclick="kd()">
-</form>
-</div>
-</section>
+    <section id="body" class="form-container">
+
+    <!--code form Card Starts-->
+        <div class="contact_us-form">
+
+        <!--Form Starts-->
+            <form name="reg" action="" method="post">
+                <fieldset>
+                    <legend><h1> Contact Us</h1></legend> 
+
+                    <!--inserting Table in form for organized lables and input fields-->
+                    <table rules="none" cellpadding=10>
+                        <tr>
+                            <td>
+                                <label for="Nam">Name:</label></td>  
+                            <td>
+                                <input type="text" name="Nam" id="Nam" placeholder="Full Name" value="" required ></td>
+                        </tr>
+                        <tr>  
+                            <td>
+                                <label>Mobile no:</label></td> 
+                            <td>
+                                <input type="tel" name="Mobile" placeholder="Example: 5760749983 " value="" required></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Email Id:</label></td> 
+                            <td>
+                                <input type="email" name="email" placeholder="Example@xyz.com" value="" required></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Company Name:</label></td>  
+                            <td>
+                                <input type="text" name="Company" placeholder="Company Name" value="" required></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>City/Town:</label></td>  
+                            <td>
+                                <input type="text" name="City" placeholder="City/Town" value="" required></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>State:</label></td>  
+                            <td>
+                                <input type="text" name="State" placeholder="State" value="" required></td>
+                        </tr>
+                        <tr >
+                            <td valign="top">
+                                <label>Comments:(If Any)</label></td> 
+                            <td>
+                                <textarea rows="4" cols="30" name="comment" value="" placeholder="Comment...(Upto 255 characters Only)" required></textarea></td>
+                        </tr>
+                    </table>
+                    <!--Input Fields and Table Ends-->
+
+                    <br>
+                    <input type="submit" class="submit" value="submit" onclick="submit();">
+                    <input type="reset" class="cancel" value="Cancel" onclick="cancel();">
+
+                </fieldset>
+            </form>
+            <!--Code For Forms Ends-->
+
+        </div>
+    </section>
+    <script type="text/javascript" src="userdata.js"></script><!--Loading the javascript for form Verification-->
 </body>
 </html>
