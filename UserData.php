@@ -28,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){ //if the information is sent through pos
 
 <!DOCTYPE html>
 <html>
-<head><title>SIGNUP </title>
+<head><title>call back </title>
     <link rel="stylesheet" href="form.css" type="text/css">
 </head>
 <body style="margin:0">
@@ -42,7 +42,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){ //if the information is sent through pos
         <!--Form Starts-->
             <form name="reg" action="" method="post">
                 <fieldset>
-                    <legend><h1> Contact Us</h1></legend> 
+                    <legend><h1>Get a call back</h1></legend> 
 
                     <!--inserting Table in form for organized lables and input fields-->
                     <table rules="none" cellpadding=10>
