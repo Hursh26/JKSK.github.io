@@ -70,8 +70,8 @@ body{
     align-items: center;
     justify-content: space-between;
     font-family: "Montserrat",sans-serif;
-    margin-left: 9%;
-    margin-right: 9%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 .nav-bar .nav-content .company-name{
     position:relative;
@@ -122,7 +122,7 @@ body{
 .nav-bar .nav-content span .links-container{
 visibility: collapse;
     position: absolute;
-    top: 11vh;
+    top: 70px;
     padding: 10px 0px 10px 0px;
     left: 0;
     width: -webkit-fill-available;
